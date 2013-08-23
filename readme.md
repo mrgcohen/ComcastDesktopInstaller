@@ -96,7 +96,6 @@ Dir.chdir() do
     puts "could not find Safari bookmarks plist file at "+SAFARI_BOOKMARKS_LOCATION
   end
 ```
-  
 
 ### Here they set the homepage
 
@@ -124,42 +123,40 @@ Dir.chdir() do
   else
     puts "could not find Safari preferences file at "+SAFARI_PREFERENCES_LOCATION
   end
-  
-  ```
+```
   
   ### Then they try to set the search provider, fortunately they fail  :)
   
-  ```ruby
-  ##
-  ## Search Provider - doesn't work :-(
-  ##
-  # if (File.exist?(SAFARI_CONFIGURATION_LOCATION))
-  #     parsedConfigs = Plist::parse_xml(SAFARI_CONFIGURATION_LOCATION)
-  #     alreadyHasComcast = false
-  #     puts "supports the following search providers:"
-  #     parsedConfigs["SearchProviders"]["SearchProviderList"].each { |provider|
-  #       puts provider["ShortName"]
-  #       if (provider["ScriptingName"] == "Comcast")
-  #         alreadyHasComcast = true
-  #       end
-  #     }
-  #     if (!alreadyHasComcast)
-  #       comcastNode = {
-  #         "HomePageURLs"  =>  [searchProviderHomepage],
-  #         "HostSuffixes"  =>  [".comcast.net"],
-  #         "PathPrefixes"  =>  ["/search"],
-  #         "ScriptingName" =>  "Comcast",
-  #         "ShortName"     =>  "Comcast",
-  #         "SearchUrlTemplate" => searchProviderUrl+"{searchTerms}" 
-  #       }
-  #       parsedConfigs["SearchProviders"]["SearchProviderList"].push(comcastNode)
-  #       configFile = File.new(SAFARI_CONFIGURATION_LOCATION,"w")
-  #       configFile.write(Plist::Emit.dump(parsedConfigs))
-  #       configFile.close
-  #     end
-  #   else
-  #     puts "could not find Safari configuration file at "+SAFARI_CONFIGURATION_LOCATION
-  #   end
-  
+```ruby
+##
+## Search Provider - doesn't work :-(
+##
+# if (File.exist?(SAFARI_CONFIGURATION_LOCATION))
+#     parsedConfigs = Plist::parse_xml(SAFARI_CONFIGURATION_LOCATION)
+#     alreadyHasComcast = false
+#     puts "supports the following search providers:"
+#     parsedConfigs["SearchProviders"]["SearchProviderList"].each { |provider|
+#       puts provider["ShortName"]
+#       if (provider["ScriptingName"] == "Comcast")
+#         alreadyHasComcast = true
+#       end
+#     }
+#     if (!alreadyHasComcast)
+#       comcastNode = {
+#         "HomePageURLs"  =>  [searchProviderHomepage],
+#         "HostSuffixes"  =>  [".comcast.net"],
+#         "PathPrefixes"  =>  ["/search"],
+#         "ScriptingName" =>  "Comcast",
+#         "ShortName"     =>  "Comcast",
+#         "SearchUrlTemplate" => searchProviderUrl+"{searchTerms}" 
+#       }
+#       parsedConfigs["SearchProviders"]["SearchProviderList"].push(comcastNode)
+#       configFile = File.new(SAFARI_CONFIGURATION_LOCATION,"w")
+#       configFile.write(Plist::Emit.dump(parsedConfigs))
+#       configFile.close
+#     end
+#   else
+#     puts "could not find Safari configuration file at "+SAFARI_CONFIGURATION_LOCATION
+#   end
 end
 ```
