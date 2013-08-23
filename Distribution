@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<installer-script authoringTool="Packages" authoringToolVersion="1.0.4" authoringToolBuild="2B40" minSpecVersion="1.0">
+    <options rootVolumeOnly="true" customize="never" allow-external-scripts="true"/>
+    <installation-check script="installation_check()"/>
+    <!--+==========================+
+        |       Presentation       |
+        +==========================+-->
+    <title>DISTRIBUTION_TITLE</title>
+    <background file="background" scaling="proportional" alignment="topleft"/>
+    <welcome file="welcome.rtf"/>
+    <conclusion file="conclusion.rtfd"/>
+    <!--+==========================+
+        |         Installer        |
+        +==========================+-->
+    <choices-outline>
+        <line choice="installer_choice_1"/>
+        <line choice="installer_choice_2"/>
+        <line choice="installer_choice_3"/>
+    </choices-outline>
+    <choice id="installer_choice_1" start_visible="false" title="a_ComcastInstaller" description="">
+        <pkg-ref id="net.comcast.ComcastInstaller.pkg"/>
+    </choice>
+    <choice id="installer_choice_2" start_visible="false" title="INSTALLER_CHOICE_2_TITLE" description="INSTALLER_CHOICE_2_DESCRIPTION">
+        <pkg-ref id="net.comcast.firefoxtoolbar"/>
+    </choice>
+    <choice id="installer_choice_3" start_visible="false" title="z_cleanup" description="">
+        <pkg-ref id="net.comcast.cleanup"/>
+    </choice>
+    <!--+==========================+
+        |    Package References    |
+        +==========================+-->
+    <pkg-ref id="net.comcast.ComcastInstaller.pkg" version="1.0" installKBytes="1065">#a_ComcastInstaller.pkg</pkg-ref>
+    <pkg-ref id="net.comcast.cleanup" version="1.0" installKBytes="0">#z_cleanup.pkg</pkg-ref>
+    <pkg-ref id="net.comcast.firefoxtoolbar" version="1.0" installKBytes="3259">#Firefox_Toolbar.pkg</pkg-ref>
+    <!--+==========================+
+        |    JavaScript Scripts    |
+        +==========================+-->
+    <script>
+
+	const __IC_FLAT_DISTRIBUTION__=true;
+	const IC_COMPARATOR_IS_LESS=-1;
+	const IC_COMPARATOR_IS_EQUAL=0;
+	const IC_COMPARATOR_IS_GREATER=1;
+	const IC_COMPARATOR_IS_NOT_EQUAL=2;
+
+	function IC_CheckScriptReturnValue(inScriptPath,inArguments,inComparator,inReturnValue)
+	{
+		var tReturnValue;
+	
+		if (inScriptPath.charAt(0)=='/')
+		{
+			/* Check Absolute Path Existence */
+			
+			if (system.files.fileExistsAtPath(inScriptPath)==false)
+			{
+				return false;
+			}
+		}
+		else
+		{
+			if (__IC_FLAT_DISTRIBUTION__==true &amp;&amp; system.compareVersions(system.version.ProductVersion, '10.6.0')&lt;0)
+			{
+				system.log("[WARNING] Embedded scripts are not supported in Flat distribution format on Mac OS X 10.5");
+          
+				return true;
+			}
+		}
+		
+		if (inArguments.length>0)
+		{
+			var tMethodCall;
+			var tStringArguments=[];
+			
+			for(var i=0;i&lt;inArguments.length;i++)
+			{
+				tStringArguments[i]='inArguments['+i+']';
+			}
+			
+			tMethodCall='system.run(inScriptPath,'+tStringArguments.join(',')+');';
+			
+			tReturnValue=eval(tMethodCall);
+		}
+		else
+		{
+			tReturnValue=system.run(inScriptPath);
+		}
+		
+		if (tReturnValue==undefined)
+		{
+			return false;
+		}
+		
+		if (inComparator==IC_COMPARATOR_IS_EQUAL)
+		{
+			return (tReturnValue==inReturnValue);
+		}
+		else if (inComparator==IC_COMPARATOR_IS_GREATER)
+		{
+			return (tReturnValue>inReturnValue);
+		}
+		else if (inComparator==IC_COMPARATOR_IS_LESS)
+		{
+			return (tReturnValue&lt;inReturnValue);
+		}
+		else if (inComparator==IC_COMPARATOR_IS_NOT_EQUAL)
+		{
+			return (tReturnValue!=inReturnValue);
+		}
+		
+		return false;
+	}
+
+	function installation_check()
+	{
+		var tResult;
+
+		var tScriptArguments0=new Array();
+
+		tResult=IC_CheckScriptReturnValue('check_for_running_browsers.sh',tScriptArguments0,IC_COMPARATOR_IS_EQUAL,0);
+
+		if (tResult==false)
+		{
+			my.result.title = system.localizedString('REQUIREMENT_FAILED_MESSAGE_INSTALLATION_CHECK_1');
+			my.result.message = system.localizedString('REQUIREMENT_FAILED_DESCRIPTION_INSTALLATION_CHECK_1');
+			my.result.type = 'Warn';
+		}
+
+		return tResult;
+	}
+
+    </script>
+</installer-script>

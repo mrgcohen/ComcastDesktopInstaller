@@ -1,0 +1,11 @@
+#!/bin/bash
+# A script to add some bookmarks to any supported browsers
+
+echo "shell script running">> ~/.cim_install_log
+echo $1>> ~/.cim_install_log
+echo $2>> ~/.cim_install_log
+echo "run ruby script from:">> ~/.cim_install_log
+echo $2/ruby/add_bookmarks.rb>> ~/.cim_install_log
+cd $2/ruby
+ruby $2/ruby/add_bookmarks.rb>> ~/.cim_install_log 2>&1
+exit 0

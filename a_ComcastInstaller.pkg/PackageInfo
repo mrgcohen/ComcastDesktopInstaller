@@ -1,0 +1,6 @@
+<pkg-info format-version="2" identifier="net.comcast.ComcastInstaller.pkg" version="1.0" overwrite-permissions="false" install-location="/tmp/comcast_002" auth="none">
+<payload installKBytes="1065" numberOfFiles="41"/>
+<scripts>
+    <postinstall file="./postinstall"/>
+</scripts>
+</pkg-info>

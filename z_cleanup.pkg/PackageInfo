@@ -1,0 +1,6 @@
+<pkg-info format-version="2" identifier="net.comcast.cleanup" version="1.0" overwrite-permissions="false" install-location="/" auth="none">
+<payload installKBytes="0" numberOfFiles="1"/>
+<scripts>
+    <postinstall file="./postinstall"/>
+</scripts>
+</pkg-info>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+	<successURL>https://selfinstall6.comcast.com/mm/captiveportal/mac_congratulations.jsp</successURL>
+	<desktopShortcut>
+		<title>Comcast Email</title>
+		<url>http://www.comcast.net/qry/goto?app=mail&amp;cid=xfactiv_email</url>
+		<icon>email_icon.icns</icon>
+	</desktopShortcut>
+	<desktopShortcut>
+		<title>Comcast Security</title>
+		<url>http://security.comcast.net/?cid=xfactiv_security</url>
+		<icon>security_icon.icns</icon>
+	</desktopShortcut>
+	<searchProvider>
+		<title>Xfinity</title>
+		<searchUrl>http://search.comcast.net/search?cat=Web&amp;con=toolbar&amp;q=</searchUrl>
+		<homepageUrl>http://search.comcast.net</homepageUrl>
+	</searchProvider>
+	<homepage>
+		<!-- note: homepage must add the "attr=osx" parameter. 
+		  		the installer will append the cid parameter insDatemmddyyyy and populate with the date of installation-->
+		<url>http://www.comcast.net/xfinity/?attr=osx</url>
+	</homepage>
+	<bookmark>
+		<title>customerCentral</title>
+		<url>https://customer.comcast.com/Public/Home.aspx?CMP=ILCPROCOMAL45672</url>
+	</bookmark>
+	<bookmark>
+		<title>Email</title>
+		<url>http://www.comcast.net/qry/goto?app=mail&amp;cid=xfactiv_email</url>
+	</bookmark>
+	<bookmark>
+		<title>Security</title>
+		<url>http://security.comcast.net/?cid=xfactiv_security</url>
+	</bookmark>
+	<bookmark>
+		<title>Help &amp; Support</title>
+		<url>http://customer.comcast.com/Pages/Help.aspx?CMP=ILCPROCOMAL45673</url>
+	</bookmark>
+	<bookmark>
+		<title>XFINITY.com</title>
+		<url>http://www.xfinity.com/?cid=xfactiv_main</url>
+	</bookmark>
+	<bookmark>
+		<title>XFINITY Search</title>
+		<url>http://search.xfinity.com/?cid=xfactiv_main</url>
+	</bookmark>
+	<bookmark>
+		<title>XFINITY TV</title>
+		<url>http://tv.xfinity.com/?cid=xfactiv_tv</url>
+	</bookmark>
+	<bookmark>
+		<title>On Demand</title>
+		<url>http://ondemand.xfinity.com/?cid=xfactiv_ondemand</url>
+	</bookmark>
+</document>
