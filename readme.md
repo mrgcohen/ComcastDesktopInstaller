@@ -10,7 +10,7 @@ Take a closer look to check what they are really doing when the install them.
 I don't like running random packages like this one on my machine.  Here's what it's doing.
 
 1. Adds these bookmarks to your browser toolbar
-2. Changes homepage for chrome, safari, and firefox
+2. Changes homepage for safari, and firefox
 3. Switches search provider on firefox
 
 
