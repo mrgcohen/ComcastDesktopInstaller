@@ -19,6 +19,46 @@ https://github.com/mrgcohen/ComcastDesktopInstaller/blob/master/a_ComcastInstall
 __Script that adds bookmarks and changes homepage__
 https://github.com/mrgcohen/ComcastDesktopInstaller/blob/master/a_ComcastInstaller.pkg/Scripts/add_bookmarks.rb
 
+## Try to kill browsers before install 
+
+(and why you see message to close browsers)
+
+```ruby
+##
+## Kill existing browser processes
+##
+safariPID = `ps ux -w -w | awk '/Safari.app/ && !/awk/ {print $2}'`
+puts "safari PID = "+safariPID
+if (safariPID != "" && safariPID != nil)
+  puts "killing Safari"
+  `kill #{safariPID.to_s}`
+  `sleep 2`
+end
+
+firefoxPID = `ps ux -w -w | awk '/Firefox.app/ && !/awk/ {print $2}'`
+puts "firefox PID = "+firefoxPID
+if (firefoxPID != "" && firefoxPID != nil)
+  puts "killing Firefox"
+  `kill #{firefoxPID.to_s}`
+  `sleep 2`
+end
+
+chromePIDs = `ps ux -w -w | awk '/Chrome.app/ && !/awk/ {print $2}'`
+chromeOpened = false
+puts "chrome PID = "+chromePIDs
+chromePIDArray = chromePIDs.split("\n")
+chromePIDArray.each { |pid|
+  if (pid != "" && pid != nil)
+    puts "killing chrome process "+pid
+    `kill #{pid.to_s}`
+    chromeOpened=true
+  end
+}
+if chromeOpened
+  `sleep 2`
+end
+```
+
 ## Safari Code
 
 ### Code that determines preferences locations
