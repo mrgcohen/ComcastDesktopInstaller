@@ -1,0 +1,8 @@
+#!/bin/bash
+# remove the temporary directory we created
+echo "remove temporary files">> ~/.cim_install_log
+#open /tmp/comcast_002/success.url
+open `cat /tmp/comcast_002/ruby/successurl`
+sleep 2
+rm -rf /tmp/comcast_002 >> ~/.cim_install_log
+echo ".........script complete.">> ~/.cim_install_log

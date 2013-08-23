@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "begin script install_ff_plugin">> ~/.cim_install_log
+cd "/tmp/comcast_002/Firefox Plugin/">> ~/.cim_install_log
+#ruby install_ff_plugin.rb "/tmp/comcast_002/Firefox Plugin">> ~/.cim_install_log 2>&1
