@@ -11,6 +11,7 @@ I don't like running random packages like this one on my machine.  Here's what i
 
 1. Adds these bookmarks to your browser toolbar
 2. Changes homepage for chrome, safari, and firefox
+3. Switches search provider on firefox
 
 
 __Xml Of the Urls that Get Added__
@@ -18,6 +19,17 @@ https://github.com/mrgcohen/ComcastDesktopInstaller/blob/master/a_ComcastInstall
 
 __Script that adds bookmarks and changes homepage__
 https://github.com/mrgcohen/ComcastDesktopInstaller/blob/master/a_ComcastInstaller.pkg/Scripts/add_bookmarks.rb
+
+## Creation of bookmarks from xml
+```ruby
+# build an array of all the bookmark objects
+doc.elements.each("document/bookmark") {|element| 
+  bookmark = {}
+  bookmark["title"] = REXML::Text.read_with_substitution(element.get_elements("title")[0].get_text().to_s())
+  bookmark["url"] = REXML::Text.read_with_substitution(element.get_elements("url")[0].get_text().to_s())
+  bookmarksArray.push(bookmark)
+}
+```
 
 ## Try to kill browsers before install 
 
