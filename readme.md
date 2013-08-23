@@ -125,7 +125,8 @@ Dir.chdir() do
   end
 ```
   
-  ### Then they try to set the search provider, fortunately they fail  :)
+### Then they try to set the search provider, fortunately they fail  :)
+__*fail = commented out__
   
 ```ruby
 ##
